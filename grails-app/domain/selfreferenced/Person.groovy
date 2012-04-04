@@ -1,7 +1,11 @@
 package selfreferenced
 
 class Person {
+    String name
 
-    static constraints = {
-    }
+    static belongsTo = [ supervisor: Person ]
+
+    Person parent
+
+    static constraints = { supervisor nullable: true }
 }

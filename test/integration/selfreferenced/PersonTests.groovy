@@ -1,19 +1,18 @@
 package selfreferenced
 
-
-
-import grails.test.mixin.*
+import static org.junit.Assert.*
 import org.junit.*
 
-@Mock(Person)
 class PersonTests {
     private parentId
 
+    @Before
     void setUp() {
         parentId = new Person(name: 'Rodrigo').save(flush: true).id
     }
 
-    void testSupervisorIsNotSet() {
+    @Test
+    void supervisorIsNotSet() {
         def rodrigo = Person.get(parentId)
         def rosa = new Person(name: 'Rosa', parent: rodrigo).save(flush: true)
         rodrigo.refresh()
